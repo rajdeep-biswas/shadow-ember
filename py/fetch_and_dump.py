@@ -53,6 +53,7 @@ else:
     # He says - text/plain works fine, but "application/json" is the semantically correct MIME type, and tools that inspect the bucket later (like BigQuery or Cloud Functions triggers) will infer it as JSON automatically. So it’s not just “tidier” — it’s metadata-correct.
     blob.upload_from_string(json_string, content_type="text/plain")
 
+    # Section "⚙️ Second: how does your Python code “magically” know which project you’re writing to?" in above linked Chat is pretty cool. For later, though.
     gcs_source_uri = f"gs://{GCS_BUCKET_NAME}/{gcs_object}"
 
     print(f"✅ Dumped JSON to GCS: {gcs_source_uri}")
