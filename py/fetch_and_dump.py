@@ -56,4 +56,5 @@ else:
     # Section "⚙️ Second: how does your Python code “magically” know which project you’re writing to?" in above linked Chat is pretty cool. For later, though.
     gcs_source_uri = f"gs://{GCS_BUCKET_NAME}/{gcs_object}"
 
+    # TODO Replace print() with the logging module. Integrates better with Airflow or Cloud Functions logs.
     print(f"✅ Dumped JSON to GCS: {gcs_source_uri}")
