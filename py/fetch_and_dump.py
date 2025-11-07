@@ -49,7 +49,10 @@ else:
     json_string = json.dumps(json_return)
 
     # TODO this probably could use some improvement. source: https://docs.cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.blob.Blob#google_cloud_storage_blob_Blob_upload_from_string
+    # Chat suggested to just change to content_type="application/json" // https://chatgpt.com/c/690ddafa-74d4-8322-8e23-3ba0daf5bdf1
+    # He says - text/plain works fine, but "application/json" is the semantically correct MIME type, and tools that inspect the bucket later (like BigQuery or Cloud Functions triggers) will infer it as JSON automatically. So it’s not just “tidier” — it’s metadata-correct.
     blob.upload_from_string(json_string, content_type="text/plain")
+
     gcs_source_uri = f"gs://{GCS_BUCKET_NAME}/{gcs_object}"
 
     print(f"✅ Dumped JSON to GCS: {gcs_source_uri}")
